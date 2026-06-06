@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<h1>Book Dashboard</h1>
+
+<form method="GET" class="search-form">
+
+    <input
+        type="text"
+        name="author"
+        placeholder="Search Author"
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>
+
+<hr>
+
+<h2>Total Books</h2>
+
+<p>{{ total_books }}</p>
+
+<hr>
+
+<h2>Average Price</h2>
+
+<p>{{ avg_price.price__avg }}</p>
+
+<hr>
+
+<h2>Books Per Category</h2>
+
+<table border="1">
+
+<tr>
+    <th>Category</th>
+    <th>Total</th>
+</tr>
+
+{% for item in category_count %}
+
+<tr>
+    <td>{{ item.category }}</td>
+    <td>{{ item.total }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<hr>
+
+<h2>Available Books</h2>
+
+<table border="1">
+
+<tr>
+    <th>Title</th>
+    <th>Author</th>
+</tr>
+
+{% for book in available_books %}
+
+<tr>
+    <td>{{ book.title }}</td>
+    <td>{{ book.author }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<hr>
+
+<h2>Books Ordered By Price</h2>
+
+<table border="1">
+
+<tr>
+    <th>Title</th>
+    <th>Price</th>
+</tr>
+
+{% for book in ordered_books %}
+
+<tr>
+    <td>{{ book.title }}</td>
+    <td>{{ book.price }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<hr>
+
+<h2>Latest 5 Books</h2>
+
+<table border="1">
+
+<tr>
+    <th>Title</th>
+    <th>Date</th>
+</tr>
+
+{% for book in latest_books %}
+
+<tr>
+    <td>{{ book.title }}</td>
+    <td>{{ book.published_date }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<hr>
+
+<h2>Search Results</h2>
+
+<table border="1">
+
+<tr>
+    <th>Title</th>
+    <th>Author</th>
+</tr>
+
+{% for book in books %}
+
+<tr>
+    <td>{{ book.title }}</td>
+    <td>{{ book.author }}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+<br>
+
+<a href="{% url 'book_list' %}">
+    Back to Books
+</a>
+
+</body>
+</html>
+
